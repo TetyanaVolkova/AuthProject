@@ -1,0 +1,11 @@
+<div *ngFor="let ticket of tickets">
+  <div *ngIf="ticket.ticket_stage === 'active'">
+      <h3 *ngIf="(labId === ticket.reg_id || labId === ticket.lab_id) && ticketatr === ticket.ticket_atr" id="lab_name">
+        Was edited on {{ ticket.ticket_date }}
+      </h3>
+      <hr *ngIf="status === ticket.ticket_status">
+      <h3 class="deleted_labs" *ngIf="status === ticket.ticket_status" id="lab_name">
+        Request for deliting was created on {{ ticket.ticket_date }}. STATUS: {{ticket.ticket_status}}
+      </h3>
+  </div>
+</div>

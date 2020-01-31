@@ -1,0 +1,43 @@
+#crs_number {
+  text-align: center;
+  font-size: 8vh;
+  font-weight: 400;
+  margin: 0;
+}
+
+#crss_text {
+  text-align: center;
+  font-size: 1.2vw;
+  margin: 0;
+}
+
+.mat-success {
+  background-color: green;
+  color: #fff;
+}
+
+.mat-card>.mat-card-actions:last-child {
+  text-align: center;
+}
+
+mat-card-header {
+  flex-direction: column;
+  text-align: center;
+}
+
+.landing-card {
+  padding-bottom: 5vh;
+}
+
+.mat-raised-button:not([class*=mat-elevation-z]) {
+  box-shadow: none;
+}
+
+.mat-card:not([class*=mat-elevation-z]) {
+  box-shadow: 0 1px 20px -1px rgba(0,0,0,.2), 0 1px 2px 0 rgba(0,0,0,.14), 0 1px 1px 0 rgba(0,0,0,.12);
+}
+
+
+
+
+

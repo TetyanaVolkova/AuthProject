@@ -1,0 +1,61 @@
+.card_wrap {
+  max-width: 50vw;
+  margin: auto;
+}
+
+::ng-deep .mat-card-header-text {
+  width: 100% !important;
+}
+
+.mat-card-header .mat-card-title {
+  margin: 3%;
+}
+
+mat-card-header {
+  text-align: center;
+  font-size: 24px;
+}
+
+mat-card-actions {
+  text-align: center;
+}
+
+mat-card-title {
+  font-size: 18px !important;
+  margin-bottom: 24px;
+}
+
+button {
+  width: 50%;
+}
+
+.mat-success {
+  background-color: green;
+  color: #fff;
+}
+
+mat-form-field {
+  width: 100%;
+}
+
+.mat-card-actions {
+  margin: 4% !important;
+  padding: 0;
+}
+
+small {
+  color: red;
+  font-size: 9px;
+}
+
+::ng-deep label span {
+  font-size: 12px;
+}
+
+form p {
+  font-size: 18px;
+}
+
+.mat-card:not([class*=mat-elevation-z]) {
+  box-shadow: 0 1px 20px -1px rgba(0,0,0,.2), 0 1px 2px 0 rgba(0,0,0,.14), 0 1px 1px 0 rgba(0,0,0,.12);
+}

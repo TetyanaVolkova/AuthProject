@@ -1,0 +1,23 @@
+ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+a {
+  text-decoration: none;
+  color: rgb(50, 100, 150);
+}
+a img {
+  height: 54px;
+  margin-top: 8px;
+}
+.spacer {
+  flex: 1 1 auto;
+}
+.router-link-active {
+  color: rgb(13, 47, 83);
+}
+
+.mat-toolbar {
+  background: #d8d8d8;
+}

@@ -1,0 +1,39 @@
+# See http://help.github.com/ignore-files/ for more about ignoring files.
+
+# compiled output
+
+/server/dist/ticketing-system/
+package-lock.json
+src/environments
+src/environments/
+/environments
+package-lock.json
+
+# dependencies
+/node_modules
+
+# IDE - VSCode
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+
+# misc
+/.sass-cache
+/connect.lock
+/coverage
+/libpeerconnection.log
+npm-debug.log
+yarn-error.log
+testem.log
+/typings
+
+# System Files
+.DS_Store
+Thumbs.db
+.env
+node_modules/
+package-lock.json
+environments/environment.prod.ts
+environments/environment.ts

@@ -1,0 +1,26 @@
+<mat-toolbar color="primary">
+  <span>
+    <a routerLink="/">
+      <img src="/assets/images/nihbanner2.svg" alt="Nete logo">
+    </a>
+  </span>
+  <span class="spacer"></span>
+  <ul fxLayout="row">
+    <li *ngIf="userIsAuthenticated">
+      <a mat-button routerLink="/laboratories" routerLinkActive="router-link-active">Laboratories</a>
+    </li>
+    <li *ngIf="userIsAuthenticated">
+      <a mat-button routerLink="/regulatory" routerLinkActive="router-link-active">Regulatory</a>
+    </li>
+    <li *ngIf="userIsAuthenticated">
+      <a mat-button routerLink="/history" routerLinkActive="router-link-active">History</a>
+    </li>
+    <li *ngIf="!userIsAuthenticated">
+      <a mat-button routerLink="/login" routerLinkActive="router-link-active">Log in</a>
+    </li>
+    <li *ngIf="userIsAuthenticated">
+      <a (click)="logOut()" mat-button routerLink="/">Log out</a>
+    </li>
+  </ul>
+</mat-toolbar>
+

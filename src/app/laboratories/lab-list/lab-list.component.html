@@ -1,0 +1,252 @@
+
+<app-search *ngIf="crss" [parentName]="'CRS'"></app-search>
+<div *ngIf="crss" class="lab_list">
+  <mat-paginator
+    [pageIndex]="pageIndex"
+    [length]="totalLabs"
+    [pageSize]="pageSize"
+    [pageSizeOptions]="pageSizeOptions"
+    (page)="onPageChange($event)">
+  </mat-paginator>
+  <div *ngFor="let crs of crss">
+    <h3>{{ crs.crs_id }}  -  {{ crs.crs_name }}</h3>
+
+    <mat-accordion multi="false">
+        <div class="add_new_lab">
+      <mat-expansion-panel
+      [ngClass]="{'hide_panel': !crs.expanded && !toggleTarget}"
+      [(ngModel)]="crs.expanded"
+      [expanded]="crs.expanded"
+        ngDefaultControl>
+        <mat-expansion-panel-header
+          (click)="onOpen( $event, crs )"
+          class="lab_panel_header">
+            <h4>Add New Laboratory Associated with {{ crs.crs_name }}</h4>
+            <button
+              class="tooltiptext">
+              <mat-icon class="close_icon" aria-hidden="false" aria-label="Close icon">
+                close
+              </mat-icon>
+            </button>
+        </mat-expansion-panel-header>
+        <div class="lab_info">
+          Before adding new laboratory to {{crs.crs_name}}, please make sure it is doesn't exist in the list. If so, please simple link it to the CRS.
+        <form #addLabForm="ngForm">
+          <mat-form-field>
+            <textarea
+              matInput
+              [formControl]="myControl"
+              [matAutocomplete]="auto"
+              type="text"
+              name="name"
+              required
+              placeholder="Search for Laboratory"
+            ></textarea>
+            <mat-autocomplete  #auto="matAutocomplete">
+              <mat-option *ngFor="let laboratory of filteredOptions | async" [value]="laboratory">
+                {{ laboratory }}
+              </mat-option>
+            </mat-autocomplete>
+          </mat-form-field>
+          If there are NO Laboratory in the list to link to this CRS, enter VALID laboratory name and click 'Add Lab' button.
+          <mat-form-field>
+            <input
+            matInput
+            [formControl]="newLabControl"
+            type="text"
+            name="newName"
+            required
+            placeholder="Add new Laboratory"
+            />
+          </mat-form-field>
+        </form>
+        <mat-action-row>
+          <button
+            [disabled]="myControl.value === null && newLabControl.value === null || myControl.value === '' && newLabControl.value === ''|| myControl.value === undefined && newLabControl.value === undefined"
+            mat-raised-button
+            [color]="'success'"
+            (click)="addLab( crs.crs_id, myControl.value, crs )">
+            Add Lab
+          </button>
+        </mat-action-row>
+        </div>
+      </mat-expansion-panel>
+      </div>
+    </mat-accordion>
+
+    <mat-accordion multi="false">
+      <div class="crss_labs">
+        <mat-expansion-panel
+          [ngClass]="{'hide_panel': !lab.expanded && !toggleTarget}"
+          [(ngModel)]="lab.expanded"
+          [expanded]="lab.expanded"
+          *ngFor="let lab of crs.laboratories; let i = index"
+          ngDefaultControl>
+          <mat-expansion-panel-header
+            (click)="onOpen( $event, lab )"
+            class="lab_panel_header">
+            <h5 class="lab_number">Laboratory {{ i + 1 }}: </h5>
+            <h3 id="lab_name"><span> &nbsp;&nbsp; </span> {{ lab.lab_name }}</h3>
+            <button
+              class="tooltiptext">
+              <mat-icon class="close_icon" aria-hidden="false" aria-label="Close icon">
+                close
+              </mat-icon>
+            </button>
+          </mat-expansion-panel-header>
+          <div class="lab_info">
+            <app-info
+              [labReg]="'laboratory'"
+              [lab]="lab"
+              [lable]="'Laboratory ID'"
+              [labAtrr]="'lab_id'">
+            </app-info>
+            <app-ticket-element
+              [ticketatr]="'lab_id'"
+              [labId]="lab.lab_id">
+            </app-ticket-element>
+            <app-info
+              [labReg]="'laboratory'"
+              [lab]="lab"
+              [lable]="'Laboratory name'"
+              [labAtrr]="'lab_name'">
+            </app-info>
+            <app-ticket-element
+              [ticketatr]="'lab_name'"
+              [labId]="lab.lab_id">
+            </app-ticket-element>
+            <app-info
+              [labReg]="'laboratory'"
+              [lab]="lab"
+              [lable]="'Location'"
+              [labAtrr]="'location'">
+            </app-info>
+            <app-ticket-element
+              [ticketatr]="'location'"
+              [labId]="lab.lab_id">
+            </app-ticket-element>
+            <app-info
+              [labReg]="'laboratory'"
+              [lab]="lab"
+              [lable]="'POC Name'"
+              [labAtrr]='"PoC_name"'>
+            </app-info>
+            <app-ticket-element
+              [ticketatr]='"PoC_name"'
+              [labId]="lab.lab_id">
+            </app-ticket-element>
+            <app-info
+              [labReg]="'laboratory'"
+              [lab]="lab"
+              [lable]="'POC Address'"
+              [labAtrr]='"PoC_address"'>
+            </app-info>
+            <app-ticket-element
+              [ticketatr]='"PoC_address"'
+              [labId]="lab.lab_id">
+            </app-ticket-element>
+            <app-info
+              [labReg]="'laboratory'"
+              [lab]="lab"
+              [lable]="'Certification'"
+              [labAtrr]="'certification'">
+            </app-info>
+            <app-ticket-element
+              [ticketatr]="'certification'"
+              [labId]="lab.lab_id">
+            </app-ticket-element>
+            <app-info
+              [labReg]="'laboratory'"
+              [lab]="lab"
+              [lable]="'Networks'"
+              [labAtrr]="'networks'">
+            </app-info>
+            <app-ticket-element
+              [ticketatr]="'networks'"
+              [labId]="lab.lab_id">
+            </app-ticket-element>
+            <app-info
+              [labReg]="'laboratory'"
+              [lab]="lab"
+              [lable]="'LDMS#'"
+              [labAtrr]="'LDMS'">
+            </app-info>
+            <app-ticket-element
+              [ticketatr]="'LDMS'"
+              [labId]="lab.lab_id">
+            </app-ticket-element>
+            <app-info
+              [labReg]="'laboratory'"
+              [lab]="lab"
+              [lable]="'Quality Assurance'"
+              [labAtrr]="'qa_services'">
+            </app-info>
+            <app-ticket-element
+              [ticketatr]="'qa_services'"
+              [labId]="lab.lab_id">
+            </app-ticket-element>
+            <app-info
+              [labReg]="'laboratory'"
+              [lab]="lab"
+              [lable]="'Tests Performed'"
+              [labAtrr]="'lab_test_performed'">
+            </app-info>
+            <app-ticket-element
+              [ticketatr]="'lab_test_performed'"
+              [labId]="lab.lab_id">
+            </app-ticket-element>
+            <app-info
+              [labReg]="'laboratory'"
+              [lab]="lab"
+              [lable]="'Certified By'"
+              [labAtrr]='"Certified_By"'>
+            </app-info>
+            <app-ticket-element
+              [ticketatr]='"Certified_By"'
+              [labId]="lab.lab_id">
+            </app-ticket-element>
+            <app-info
+              [labReg]="'laboratory'"
+              [lab]="lab"
+              [lable]="'Latitude'"
+              [labAtrr]="'Latitude'">
+            </app-info>
+            <app-ticket-element
+              [ticketatr]="'Latitude'"
+              [labId]="lab.lab_id">
+            </app-ticket-element>
+            <app-info
+              [labReg]="'laboratory'"
+              [lab]="lab"
+              [lable]="'Longtitude'"
+              [labAtrr]="'Longtitude'">
+            </app-info>
+            <app-ticket-element
+              [ticketatr]="'Longtitude'"
+              [labId]="lab.lab_id">
+            </app-ticket-element>
+          </div>
+          <app-ticket-element
+            [labId]="lab.lab_id"
+            [status]="'deleted'">
+          </app-ticket-element>
+          <mat-action-row>
+            <button
+              (click)="deleteLab($event, lab, 'laboratory')"
+              mat-raised-button
+              color="warn">
+              DELETE
+            </button>
+          </mat-action-row>
+        </mat-expansion-panel>
+      </div>
+    </mat-accordion>
+  </div>
+  <mat-paginator
+    [pageIndex]="pageIndex"
+    [length]="totalLabs"
+    [pageSize]="pageSize"
+    [pageSizeOptions]="pageSizeOptions"
+    (page)="onPageChange($event)">
+  </mat-paginator>
+</div>

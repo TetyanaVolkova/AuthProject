@@ -1,0 +1,69 @@
+<div fxFlex fxLayout="column" fxLayoutGap="2%">
+  <div *ngIf="crssNumber" fxFlex fxLayoutGap="5%" fxLayout="row">
+    <mat-card fxFlex class="landing-card">
+      <mat-card-header>
+        <mat-card-title>CRS Sites</mat-card-title>
+        <mat-card-subtitle>Information</mat-card-subtitle>
+      </mat-card-header>
+      <mat-card-content>
+        <p id="crs_number">
+          {{crssNumber}}
+        </p>
+        <p id="crss_text">CRS Sites</p>
+      </mat-card-content>
+      <mat-card-actions>
+        <button (click)="goToCRS()" mat-raised-button [color]="'success'">Go to CRS Explorer</button>
+      </mat-card-actions>
+    </mat-card>
+
+    <mat-card fxFlex class="landing-card">
+      <mat-card-header>
+        <mat-card-title>All Tickets</mat-card-title>
+        <mat-card-subtitle>Information</mat-card-subtitle>
+      </mat-card-header>
+      <mat-card-content>
+        <p id="crs_number">
+          {{allTickets}}
+        </p>
+        <p id="crss_text">All Tickets</p>
+      </mat-card-content>
+      <mat-card-actions>
+        <button mat-raised-button [color]="'success'">To Tickets</button>
+      </mat-card-actions>
+    </mat-card>
+  </div>
+
+  <div *ngIf="crssNumber" fxFlex fxLayoutGap="5%" fxLayout="row">
+    <mat-card fxFlex class="landing-card">
+      <mat-card-header>
+        <mat-card-title>Approved Tickets</mat-card-title>
+        <mat-card-subtitle>Information</mat-card-subtitle>
+      </mat-card-header>
+      <mat-card-content>
+        <p id="crs_number">
+          {{approvedTickets}}
+        </p>
+        <p id="crss_text">Approved Tickets in progress</p>
+      </mat-card-content>
+      <mat-card-actions>
+        <button mat-raised-button [color]="'success'">To Tickets</button>
+      </mat-card-actions>
+    </mat-card>
+
+    <mat-card fxFlex class="landing-card">
+      <mat-card-header>
+        <mat-card-title>Open Tickets</mat-card-title>
+        <mat-card-subtitle>Information</mat-card-subtitle>
+      </mat-card-header>
+      <mat-card-content>
+        <p id="crs_number">
+          {{activeTickets}}
+        </p>
+        <p id="crss_text">Active Tickets</p>
+      </mat-card-content>
+      <mat-card-actions>
+        <button mat-raised-button [color]="'success'">To Tickets</button>
+      </mat-card-actions>
+    </mat-card>
+  </div>
+</div>

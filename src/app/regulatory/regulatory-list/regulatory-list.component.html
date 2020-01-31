@@ -1,0 +1,108 @@
+
+<app-search *ngIf="crss" [parentName]="'Regulatory'"></app-search>
+<div *ngIf="crss" class="reg_list">
+  <mat-paginator
+    [pageIndex]="pageIndex"
+    [length]="totalLabs"
+    [pageSize]="pageSize"
+    [pageSizeOptions]="pageSizeOptions"
+    (page)="onPageChange($event)">
+  </mat-paginator>
+  <div *ngFor="let crs of crss">
+    <h3>{{ crs.crs_id }}  -  {{ crs.crs_name }}</h3>
+    <mat-accordion multi="false">
+      <div class="crss_labs">
+        <mat-expansion-panel
+          [(ngModel)]="crs.regulatory.expanded"
+          [expanded]="crs.regulatory.expanded"
+          class="crss_regs"
+          ngDefaultControl>
+          <mat-expansion-panel-header (click)="onOpen( $event, crs.regulatory )" *ngIf="crs.regulatory.crs_id != '' && crs.regulatory.crs_name != ''" class="lab_panel_header">
+            <h2 id="lab_name">#{{crs.regulatory.id}} Regulatory Requirements associated with {{crs.crs_name}} </h2>
+            <button class="tooltiptext"><mat-icon class="close_icon" aria-hidden="false" aria-label="Close icon">close</mat-icon></button>
+          </mat-expansion-panel-header >
+          <div id="lab_info">
+            <app-info
+              [labReg]="'regulatory'"
+              [lab]="crs.regulatory"
+              [lable]="'CTU name'"
+              [labAtrr]="'ctu_name'">
+            </app-info>
+            <app-ticket-element
+              [ticketatr]="'ctu_name'"
+              [labId]="crs.regulatory.id">
+            </app-ticket-element>
+            <app-info
+              [labReg]="'regulatory'"
+              [lab]="crs.regulatory"
+              [lable]="'Local irb ec name'"
+              [labAtrr]="'local_irb_ec_name'">
+            </app-info>
+            <app-ticket-element
+              [ticketatr]="'local_irb_ec_name'"
+              [labId]="crs.regulatory.id">
+            </app-ticket-element>
+            <app-info
+              [labReg]="'regulatory'"
+              [lab]="crs.regulatory"
+              [lable]="'Other irb ec name'"
+              [labAtrr]="'other_irb_ec_name'">
+            </app-info>
+            <app-ticket-element
+              [ticketatr]="'other_irb_ec_name'"
+              [labId]="crs.regulatory.id">
+            </app-ticket-element>
+            <app-info
+              [labReg]="'regulatory'"
+              [lab]="crs.regulatory"
+              [lable]="'Established ibc'"
+              [labAtrr]="'established_ibc'">
+            </app-info>
+            <app-ticket-element
+              [ticketatr]="'established_ibc'"
+              [labId]="crs.regulatory.id">
+            </app-ticket-element>
+            <app-info
+              [labReg]="'regulatory'"
+              [lab]="crs.regulatory"
+              [lable]="'Ibc name'"
+              [labAtrr]="'ibc_name'">
+            </app-info>
+            <app-ticket-element
+              [ticketatr]="'ibc_name'"
+              [labId]="crs.regulatory.id">
+            </app-ticket-element>
+            <app-info
+              [labReg]="'regulatory'"
+              [lab]="crs.regulatory"
+              [lable]="'Language'"
+              [labAtrr]="'language'">
+            </app-info>
+            <app-ticket-element
+              [ticketatr]="'language'"
+              [labId]="crs.regulatory.id">
+            </app-ticket-element>
+            <app-info
+              [labReg]="'regulatory'"
+              [lab]="crs.regulatory"
+              [lable]="'Cti needed'"
+              [labAtrr]="'cti_needed'">
+            </app-info>
+            <app-ticket-element
+              [ticketatr]="'cti_needed'"
+              [labId]="crs.regulatory.id">
+            </app-ticket-element>
+          </div>
+        </mat-expansion-panel>
+      </div>
+    </mat-accordion>
+  </div>
+  <mat-paginator
+    [pageIndex]="pageIndex"
+    [length]="totalLabs"
+    [pageSize]="pageSize"
+    [pageSizeOptions]="pageSizeOptions"
+    (page)="onPageChange($event)">
+  </mat-paginator>
+</div>
+

@@ -1,0 +1,16 @@
+<mat-card id="search_field">
+  <form #postForm="ngForm">
+    <mat-form-field>
+      <input
+        matInput
+        type="text"
+        name="name"
+        [(ngModel)]="name"
+        name="name"
+        required
+        placeholder="Search by {{ parentName }} Name"
+        (keyup)="onKey($event.target.value, name)"
+      >
+    </mat-form-field>
+  </form>
+</mat-card>

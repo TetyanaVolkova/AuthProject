@@ -1,0 +1,14 @@
+::ng-deep html, ::ng-deep body, ::ng-deep app-root {
+  height: 100%;
+  overflow: hidden;
+}
+
+main {
+  width: 80%;
+  margin: auto;
+}
+
+.main_wrap {
+  background: #f7f7f7;
+}
+

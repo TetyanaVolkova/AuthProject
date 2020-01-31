@@ -1,0 +1,82 @@
+<mat-card class="card_wrap">
+  <mat-card-header>
+    <mat-card-title>REGISTER</mat-card-title>
+  </mat-card-header>
+  <mat-card-content>
+    <form [formGroup]="registerForm" (ngSubmit)='register()'>
+      <mat-form-field>
+        <input
+        id="focus"
+        autofocus
+        matInput
+        formControlName="firstNameControl"
+        type="text"
+        name="firstName"
+        required
+        placeholder="First Name"
+        />
+      </mat-form-field>
+      <mat-form-field>
+        <input
+        matInput
+        formControlName="lastNameControl"
+        type="text"
+        name="lastName"
+        required
+        placeholder="Last Name"
+        />
+      </mat-form-field>
+      <mat-form-field>
+        <input
+        matInput
+        formControlName="userNameControl"
+        type="email"
+        name="userName"
+        required
+        placeholder="E-Mail"
+        email="true"
+        />
+        <small *ngIf="!registerForm.controls.userNameControl.valid">
+            Please enter a valid email.
+        </small>
+      </mat-form-field>
+      <mat-form-field>
+        <input
+        matInput
+        formControlName="passwordControl"
+        type="password"
+        name="password"
+        required
+        placeholder="Password"
+        pattern=".{6,}"
+        />
+        <small *ngIf="!registerForm.controls.passwordControl.valid">
+            Please use minimum 6 symbols for password.
+        </small>
+      </mat-form-field>
+      <mat-form-field>
+        <input
+        matInput
+        formControlName="confirmPasswordControl"
+        type="password"
+        name="confirmpassword"
+        required
+        placeholder="Confirm password"
+        pattern=".{6,}"
+        />
+        <small *ngIf="registerForm.value.passwordControl !== registerForm.value.confirmPasswordControl">
+          Password does not match. Please try again.
+        </small>
+      </mat-form-field>
+      <mat-card-actions>
+        <button type="submit" mat-raised-button [color]="'success'" [disabled]="!registerForm.valid">
+          Register
+        </button>
+      </mat-card-actions>
+      <p *ngIf="email_exist">
+        This email is already registered, please try again or follow the <a routerLink="/login">link to Login</a>.
+      </p>
+      <small *ngIf="!registerForm.valid">All fields are required.</small>
+    </form>
+  </mat-card-content>
+</mat-card>

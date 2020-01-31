@@ -1,0 +1,41 @@
+<mat-card class="card_wrap">
+    <mat-card-header>
+      <mat-card-title>LOG IN <span *ngIf="userIsAuthenticated === false">E-mail address or password is incorrect.</span></mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      <form [formGroup]="authForm" (ngSubmit)='login(authForm)'>
+        <mat-form-field>
+          <input
+          id="emailFocus"
+          matInput
+          formControlName="userNameControl"
+          type="email"
+          name="userName"
+          required
+          placeholder="E-Mail"
+          email="true"
+          />
+          <small *ngIf="!authForm.controls.userNameControl.valid">
+              Please enter a valid email.
+          </small>
+        </mat-form-field>
+        <mat-form-field>
+          <input
+          matInput
+          formControlName="passwordControl"
+          type="password"
+          name="password"
+          required
+          placeholder="Password"
+          />
+          <!-- <small *ngIf="!authForm.controls.passwordControl.valid">
+              Please use minimum 6 symbols for password.
+          </small> -->
+        </mat-form-field>
+        <mat-card-actions>
+          <button type="submit" mat-raised-button [color]="'success'" [disabled]="!authForm.valid">Log in</button>
+        </mat-card-actions>
+        <p>Or follow this <a routerLink="/register">link</a> to register</p>
+      </form>
+    </mat-card-content>
+  </mat-card>

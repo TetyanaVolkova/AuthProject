@@ -1,0 +1,101 @@
+
+<app-search *ngIf="history" [parentName]="'Ticket Status'"></app-search>
+<div *ngIf="history" class="reg_list">
+  <mat-paginator
+    [pageIndex]="pageIndex"
+    [length]="totalTickets"
+    [pageSize]="pageSize"
+    [pageSizeOptions]="pageSizeOptions"
+    (page)="onPageChange($event)">
+  </mat-paginator>
+  <div>
+    <mat-accordion *ngIf="history" multi="false">
+      <div class="crss_labs">
+        <mat-expansion-panel
+          [(ngModel)]="ticket.expanded"
+          [expanded]="ticket.expanded"
+          *ngFor="let ticket of history; let i = index"
+          [ngClass]="{'inactive_ticket': ticket.ticket_stage==='archived approved' || ticket.ticket_stage ==='archived rejected', 'ticket_approved': ticket.ticket_stage === 'inProcess approved', 'ticket_rejected': ticket.ticket_stage === 'inProcess rejected', 'hide_panel': !ticket.expanded && !toggleTarget}"
+          ngDefaultControl>
+          <mat-expansion-panel-header
+            class="lab_panel_header"
+            (click)="onOpen( $event, ticket )">
+            <h3 *ngIf="ticket.ticket_stage === 'active'">
+              {{ (ticket.ticket_id) }}. Ticket for {{ticket.lab_reg}} is<strong> ACTIVE</strong> was created by {{ ticket.ticket_fullname }}, on {{ticket.ticket_date}}.
+            </h3>
+            <h3 *ngIf="ticket.ticket_stage === 'inProcess approved' || ticket.ticket_stage === 'inProcess rejected'">
+              {{ (ticket.ticket_id) }}. Ticket was <strong> {{ ticket.ticket_stage.split(' ')[1].toUpperCase() }}</strong> by {{ ticket.ticket_fullname }}, on {{ticket.ticket_date}}.
+            </h3>
+            <h3 *ngIf="ticket.ticket_stage === 'archived approved' || ticket.ticket_stage === 'archived rejected'">
+              {{ (ticket.ticket_id) }}. Ticket was <strong> {{ ticket.ticket_stage.split(' ')[1].toUpperCase() }} and ARCHIVED.</strong>
+            </h3>
+            <span *ngIf="ticket.ticket_stage.split(' ')[0] !== 'archived'"><h2 class="status_span">Status: {{ ticket.ticket_status.toUpperCase() }}</h2></span>
+            <button class="tooltiptext"><mat-icon class="close_icon" aria-hidden="false" aria-label="Close icon">close</mat-icon></button>
+          </mat-expansion-panel-header >
+          <div id="lab_info">
+            <div *ngIf="ticket.ticket_status !== 'deleted'">
+                <h3>{{ ticket.ticket_atr }} was changed.</h3>
+                <h4>Old value was:</h4>
+                <p>{{ticket.ticket_old_value}}</p>
+                <h4>New value is:</h4>
+                <p>{{ ticket.ticket_new_value }}</p>
+            </div>
+            <div *ngIf="ticket.ticket_status === 'deleted'">
+                <h3 *ngIf="ticket.ticket_stage === 'active'">
+                  Request for deleting
+                  <strong>{{ticket.lab_reg}}</strong>
+                  for CRS #{{ticket.crs_id}} was created.
+                </h3>
+                <h3 *ngIf="ticket.ticket_stage !== 'active'">
+                  Request for deleting
+                  <strong>{{ticket.lab_reg}}</strong>
+                  for CRS #{{ticket.crs_id}} was {{ ticket.ticket_stage.split(' ')[1] }}.
+                </h3>
+            </div>
+          </div>
+          <mat-action-row *ngIf="!(ticket.ticket_stage === 'inProcess approved' || ticket.ticket_stage === 'inProcess rejected')">
+            <button
+              [disabled]="ticket.ticket_stage === 'archived approved' || ticket.ticket_stage == 'archived rejected' "
+              (click)="approveReject(ticket, 'approved')"
+              mat-raised-button
+              color="primary">
+              APPROVE
+            </button>
+            <span class="buttons_span"></span>
+            <button
+              [disabled]= "ticket.ticket_stage === 'archived approved' || ticket.ticket_stage == 'archived rejected' "
+              (click)="approveReject(ticket, 'rejected')"
+              mat-raised-button
+              color="warn">
+              REJECT
+            </button>
+          </mat-action-row>
+          <mat-action-row *ngIf="ticket.ticket_stage === 'inProcess approved'">
+            <button
+            [disabled]="ticket.ticket_stage === 'archived approved' || ticket.ticket_stage == 'archived rejected' "
+            (click)="mergeToDB(ticket)"
+            mat-raised-button color="primary">
+            MERGE TO DB
+          </button>
+          </mat-action-row>
+          <mat-action-row *ngIf="ticket.ticket_stage === 'inProcess rejected'">
+            <button
+            [disabled]="ticket.ticket_stage === 'archived approved' || ticket.ticket_stage == 'archived rejected' "
+            (click)="sendEmail(ticket)"
+            mat-raised-button color="primary">
+            SEND EMAIL
+          </button>
+          </mat-action-row>
+        </mat-expansion-panel>
+      </div>
+    </mat-accordion>
+  </div>
+  <mat-paginator
+    [pageIndex]="pageIndex"
+    [length]="totalTickets"
+    [pageSize]="pageSize"
+    [pageSizeOptions]="pageSizeOptions"
+    (page)="onPageChange($event)">
+  </mat-paginator>
+</div>
+

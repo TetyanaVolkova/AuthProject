@@ -1,0 +1,49 @@
+<div [ngClass]="{'editing_lab':!toggleEdit}" id="lab_info_component" fxLayout="column">
+    <div fxLayout="row" fxLayoutAlign="center">
+      <h3 fxFlex="18%">{{lable}}:</h3>
+      <h4 fxFlex="60%">{{ lab[labAtrr] }}</h4>
+      <button fxFlex="10%"
+        *ngIf="toggleEdit"
+        (click)="toggleEdit = !toggleEdit"
+        mat-raised-button
+        [color]="'success'">
+        EDIT
+      </button>
+      <button fxFlex="10%"
+        *ngIf="!toggleEdit"
+        (click)="toggleEdit = !toggleEdit"
+        mat-raised-button
+        [color]="'success'">
+        CANCEL
+      </button>
+    </div>
+    <div
+    *ngIf="!toggleEdit"
+    fxLayout="row"
+    fxLayoutAlign="center">
+      <h3 fxFlex="18%">New {{lable}}:</h3>
+      <form
+        #changeForm="ngForm"
+        fxFlex="60%"
+      >
+        <mat-form-field>
+          <textarea
+            matInput
+            type="text"
+            [(ngModel)]="name"
+            name="name"
+            required
+            placeholder="Add new value for {{lable}}">
+          </textarea>
+        </mat-form-field>
+      </form>
+      <button fxFlex="10%"
+        [disabled]="!changeForm.form.valid"
+        type="submit"
+        (click)="editLab($event, name, changeForm)"
+        mat-raised-button
+        color="warn">
+        SAVE
+      </button>
+    </div>
+  </div>

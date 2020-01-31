@@ -1,0 +1,144 @@
+.info-text {
+  text-align: center;
+}
+
+#lab_name {
+  font-weight: 400;
+  padding-right: 24px;
+}
+
+#lab_info div {
+  /* background: rgb(218, 228, 248); */
+  /* -moz-box-shadow:    5px 3px 10px 4px #ccc;
+  -webkit-box-shadow: 5px 3px 10px 4px #ccc;
+  box-shadow:         5px 3px 10px 4px #ccc; */
+  margin: 18px auto;
+  padding: 10px 20px;
+}
+
+#lab_info div button {
+  margin: auto;
+}
+
+mat-action-row button {
+  margin: auto;
+  width: 50%;
+}
+
+.lab_panel_header {
+  height: 100% !important;
+}
+
+.lab_panel_header p {
+  color: red;
+}
+
+.reg_list {
+  margin-top: 18px;
+  padding: 0 12px;
+  max-height: min-content;
+  height: calc(100vh - 225px);
+  overflow: auto;
+}
+
+.mat-expansion-panel-header.mat-expanded .mat-expansion-panel {
+  border: solid 3px black;
+}
+
+.mat-expansion-panel-header.mat-expanded #lab_name {
+  font-weight: 600;
+  margin: 40px auto;
+  transition: 2s;
+}
+
+.mat-expansion-panel {
+  margin: 12px 0;
+  /* -moz-box-shadow:    5px 3px 10px 4px #ccc;
+  -webkit-box-shadow: 5px 3px 10px 4px #ccc;
+  box-shadow:         5px 3px 10px 4px #ccc; */
+}
+
+.status_span {
+  margin: 12px;
+}
+
+.buttons_span {
+  width: 10%;
+}
+
+strong {
+  color: rgb(247, 55, 87);
+}
+
+.inactive_ticket {
+  background: rgba(6, 1, 15, 0.2);
+  /* opacity: 0.4; */
+}
+
+.ticket_approved {
+  background: rgba(119, 252, 174, 0.2);
+  /* opacity: 0.9; */
+}
+
+.ticket_rejected {
+  background: rgba(252, 119, 119, .5 );
+  /* opacity: 0.7; */
+}
+
+.lab_is_open .inactive_ticket {
+  background: rgb(238, 238, 240);
+  /* opacity: 0.4; */
+}
+
+.lab_is_open .ticket_approved {
+  background: rgb(180, 250, 209);
+  /* opacity: 0.9; */
+}
+
+.lab_is_open .ticket_rejected {
+  background: rgb(248, 167, 167);
+  /* opacity: 0.7; */
+}
+
+.lab_is_open {
+  opacity: .9;
+  position: absolute;
+  top: 64px;
+  z-index: 90;
+  height: calc(100vh - 100px);
+  width: 85%;
+  overflow: auto;
+  margin: 1% -20px;
+}
+
+.lab_is_open mat-expansion-panel {
+  position: absolute;
+  width: 100%;
+}
+
+.lab_is_open .mat-expansion-panel-header .tooltiptext {
+  width: 50px;
+  height: 50px;
+  background-color: transparent;
+  color: rgb(245, 21, 21);
+  border: none;
+  display: block;
+  margin: auto 0;
+  cursor: pointer;
+}
+
+::ng-deep .lab_is_open .mat-expansion-indicator::after {
+  display: none !important;
+}
+
+.tooltiptext {
+  display: none;
+}
+
+.hide_panel {
+  display: none;
+}
+
+mat-expansion-panel {
+  box-shadow: 0 1px 20px -1px rgba(0,0,0,.2), 0 1px 2px 0 rgba(0,0,0,.14), 0 1px 1px 0 rgba(0,0,0,.12) !important;
+}

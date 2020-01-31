@@ -1,0 +1,101 @@
+.info-text {
+  text-align: center;
+}
+
+#lab_name {
+  font-weight: 400;
+  padding-right: 24px;
+}
+
+#lab_info div {
+  background: rgb(218, 228, 248);
+  -moz-box-shadow:    5px 3px 10px 4px #ccc;
+  -webkit-box-shadow: 5px 3px 10px 4px #ccc;
+  box-shadow:         5px 3px 10px 4px #ccc;
+  margin: 18px auto;
+  padding: 10px 20px;
+}
+
+#lab_info div button {
+  margin: auto;
+}
+
+mat-action-row button {
+  margin: auto;
+  width: 50%;
+}
+
+.lab_panel_header {
+  height: 100% !important;
+}
+
+.reg_list {
+  margin-top: 18px;
+  padding: 0 12px;
+  max-height: min-content;
+  height: calc(100vh - 225px);
+  overflow: auto;
+  -moz-box-shadow:    5px 3px 10px 4px #ccc;
+  -webkit-box-shadow: 5px 3px 10px 4px #ccc;
+  box-shadow:         5px 3px 10px 4px #ccc;
+}
+
+.mat-expansion-panel-header.mat-expanded .mat-expansion-panel {
+  border: solid 3px black;
+}
+
+.mat-expansion-panel-header.mat-expanded #lab_name {
+  font-weight: 600;
+  margin: 40px auto;
+  transition: 2s;
+}
+
+.mat-expansion-panel {
+  margin: 12px 0;
+  -moz-box-shadow:    5px 3px 10px 4px #ccc;
+  -webkit-box-shadow: 5px 3px 10px 4px #ccc;
+  box-shadow:         5px 3px 10px 4px #ccc;
+}
+
+.add_new_reg {
+  background: rgb(253, 242, 242);
+}
+
+.crss_regs {
+  background: rgb(237, 250, 238);
+}
+
+.lab_is_open {
+  opacity: .9;
+  position: absolute;
+  top: 64px;
+  z-index: 90;
+  height: calc(100vh - 100px);
+  width: 85%;
+  overflow: auto;
+  margin: 1% -20px;
+}
+
+.lab_is_open mat-expansion-panel {
+  position: absolute;
+  width: 100%;
+}
+
+.lab_is_open .mat-expansion-panel-header .tooltiptext {
+  width: 50px;
+  height: 50px;
+  background-color: rgb(237, 250, 238);
+  color: rgb(245, 21, 21);
+  border: none;
+  display: block;
+  margin: auto 0;
+  cursor: pointer;
+}
+
+::ng-deep .lab_is_open .mat-expansion-indicator::after {
+  display: none !important;
+}
+
+.tooltiptext {
+  display: none;
+}
