@@ -4,6 +4,7 @@ import { HttpClient } from '@angular/common/http';
 import { environment } from '../../environments/environment';
 import { Inject } from '@angular/core';
 import { Router } from '@angular/router';
+import * as CryptoJS from 'crypto-js';
 
 @Component({
   selector: 'app-register-component',
@@ -18,11 +19,7 @@ export class RegisterComponent implements OnInit {
       passwordControl: new FormControl(),
       confirmPasswordControl: new FormControl()
     });
-  // fullNameControl = new FormControl();
-  // userNameControl = new FormControl();
-  // passwordControl = new FormControl();
-  // confirmPasswordControl = new FormControl();
-
+  private secretKey = environment.SECRET_KEY;
   private BACKEND_URL = environment.BACKEND_URL;
   private user = {
     auth_fullname: '',
@@ -44,10 +41,15 @@ export class RegisterComponent implements OnInit {
       return;
     }
     this.fullName = this.registerForm.value.firstNameControl + ' ' + this.registerForm.value.lastNameControl;
+    const password = this.registerForm.value.passwordControl;
+    const keyutf = CryptoJS.enc.Utf8.parse(this.secretKey);
+    const iv = CryptoJS.enc.Base64.parse(this.secretKey);
+    const enc = CryptoJS.AES.encrypt(password, keyutf, { iv: iv });
+    const encStr = enc.toString();
     this.user = {
       auth_fullname: this.fullName,
       auth_email: this.registerForm.value.userNameControl,
-      auth_password: this.registerForm.value.passwordControl
+      auth_password: encStr
     };
     this.http
       .post( this.BACKEND_URL + '/register',

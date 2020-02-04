@@ -5,6 +5,7 @@ declare var require: any;
 
 import { environment } from '../../environments/environment';
 import { Router } from '@angular/router';
+import * as CryptoJS from 'crypto-js';
 
 @Injectable({ providedIn: 'root' })
 
@@ -15,6 +16,7 @@ export class AuthService {
   tokenListener = new Subject();
   private tokenTimer: any;
   private BACKEND_URL = environment.BACKEND_URL;
+  private secretKey = environment.SECRET_KEY;
 
   constructor( private http: HttpClient,
                private router: Router ) {
@@ -31,9 +33,14 @@ export class AuthService {
   getTokenListener() {
     return this.tokenListener.asObservable();
   }
-  login(authForm) {
+  login( authForm: any ) {
+    const pass = authForm.value.passwordControl;
+    const keyutf = CryptoJS.enc.Utf8.parse(this.secretKey);
+    const iv = CryptoJS.enc.Base64.parse(this.secretKey);
+    const enc = CryptoJS.AES.encrypt(pass, keyutf, { iv: iv });
+    const encStr = enc.toString();
+    authForm.value.passwordControl = encStr;
     console.log(authForm.value);
-
     this.http
       .post<{token: string, expiresIn: Number}>( this.BACKEND_URL + '/login', authForm.value )
       .subscribe(responseData => {
@@ -60,10 +67,10 @@ export class AuthService {
     }
     const now = new Date();
     const expiresIn = authInformation.expirationDate.getTime() - now.getTime();
-    if(expiresIn > 0) {
+    if (expiresIn > 0) {
       this.token = authInformation.token;
       this.isAuthenticated = true;
-      this.authStatusListener.next(true); 
+      this.authStatusListener.next(true);
       this.setAuthTimer(expiresIn / 1000);
     }
   }
